@@ -3,15 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hỗ Trợ Bảo Hành MuaChungChi - Revoke Cấp Lại Miễn Phí</title> <!-- ĐÃ CẬP NHẬT TITLE -->
-    <meta name="description" content="Bảo hành trọn đời chứng chỉ ký app iOS – Cấp lại miễn phí 100% khi bị thu hồi">
+    <title>Hỗ Trợ Bảo Hành MuaChungChi - Revoke Cấp Lại Miễn Phí</title> <meta name="description" content="Bảo hành trọn đời chứng chỉ ký app iOS – Cấp lại miễn phí 100% khi bị thu hồi">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <!-- ĐÃ THÊM LOGO FAVICON -->
     <link rel="icon" href="https://i.imgur.com/a8h55a6.png" type="image/png">
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body { 
+            font-family: 'Inter', sans-serif;
+            /* CHẶN SAO CHÉP VÀ CHỌN VÙNG (Tùy chọn) */
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
         .glass { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
         @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
         .float { animation: float 6s ease-in-out infinite; }
@@ -49,27 +54,36 @@
             opacity: 0.5;
             filter: blur(8px);
         }
+
+        /* ẨN LINK HIỆN Ở GÓC DƯỚI BÊN TRÁI KHI RÊ CHUỘT */
+        a:hover {
+            cursor: default;
+        }
+        a:hover::before {
+            content: '';
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-black via-gray-950 to-orange-950 text-white min-h-screen">
 
-    <!-- Nền động -->
     <div class="fixed inset-0 -z-10 overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-br from-orange-600/20 via-transparent to-red-600/20"></div>
         <div class="absolute top-1/4 left-1/4 w-72 h-72 bg-orange-500 rounded-full filter blur-3xl opacity-20 animate-pulse"></div>
         <div class="absolute bottom-1/4 right-1/4 w-72 h-72 bg-red-600 rounded-full filter blur-3xl opacity-20 animate-pulse delay-1000"></div>
     </div>
 
-    <!-- Header (Fixed Top Bar) -->
     <header class="sticky top-0 z-50 glass bg-black/70 border-b border-white/10">
-        <div class="max-w-2xl mx-auto px-3 py-3 flex items-center justify-between"> <!-- Giảm px và py -->
-            <div class="flex items-center gap-2"> <!-- Giảm gap -->
-                <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center shadow-lg"> <!-- Giảm size logo -->
-                    <i class="fa-solid fa-shield-halved text-lg"></i>
+        <div class="max-w-2xl mx-auto px-3 py-3 flex items-center justify-between"> <div class="flex items-center gap-2"> <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center shadow-lg"> <i class="fa-solid fa-shield-halved text-lg"></i>
                 </div>
                 <div>
-                    <h1 class="text-lg font-black tracking-tight">MuaChungChi</h1> <!-- Giảm size font -->
-                    <p class="text-xs text-orange-400 font-medium">Bảo hành trọn đời • Cấp lại miễn phí</p>
+                    <h1 class="text-lg font-black tracking-tight">MuaChungChi</h1> <p class="text-xs text-orange-400 font-medium">Bảo hành trọn đời • Cấp lại miễn phí</p>
                 </div>
             </div>
             <a href="#support" class="text-xs font-semibold text-white/80 hover:text-white transition-colors">
@@ -78,47 +92,27 @@
         </div>
     </header>
 
-    <main class="max-w-2xl mx-auto px-4 py-6 space-y-12"> <!-- Giảm py và space-y -->
-
-        <!-- 1. THÔNG BÁO QUAN TRỌNG (Alert Card) -->
-        <section class="bg-white/5 glass rounded-xl p-4 border border-white/20 shadow-xl shadow-red-500/30 -mt-2"> <!-- Giảm padding, giảm margin-top -->
-            <div class="flex items-start gap-3">
-                <i class="fa-solid fa-triangle-exclamation text-red-500 text-xl flex-shrink-0 mt-0.5"></i> <!-- Giảm size icon -->
-                <div>
-                    <h2 class="font-extrabold text-lg text-red-400 mb-1">Thông báo quan trọng</h2> <!-- Giảm size font -->
-                    <div class="text-xs text-gray-300 leading-snug space-y-1.5"> <!-- Giảm size font và spacing -->
-                        <p>Apple đang quét chứng chỉ diện rộng toàn cầu → hàng triệu chứng chỉ bị thu hồi.</p>
-                        <p class="p-2 bg-red-900/50 rounded-md border-l-4 border-red-500"> <!-- Giảm padding -->
-                            Chúng tôi sẽ cấp chứng chỉ mới với <span class="font-bold text-red-300">bảo mật nâng cao</span> ngay khi hoàn tất bảo hành.
+    <main class="max-w-2xl mx-auto px-4 py-6 space-y-12"> <section class="bg-white/5 glass rounded-xl p-4 border border-white/20 shadow-xl shadow-red-500/30 -mt-2"> <div class="flex items-start gap-3">
+                <i class="fa-solid fa-triangle-exclamation text-red-500 text-xl flex-shrink-0 mt-0.5"></i> <div>
+                    <h2 class="font-extrabold text-lg text-red-400 mb-1">Thông báo quan trọng</h2> <div class="text-xs text-gray-300 leading-snug space-y-1.5"> <p>Apple đang quét chứng chỉ diện rộng toàn cầu → hàng triệu chứng chỉ bị thu hồi.</p>
+                        <p class="p-2 bg-red-900/50 rounded-md border-l-4 border-red-500"> Chúng tôi sẽ cấp chứng chỉ mới với <span class="font-bold text-red-300">bảo mật nâng cao</span> ngay khi hoàn tất bảo hành.
                         </p>
                     </div>
                 </div>
             </div>
-            <p class="text-xs italic text-gray-400 mt-3 pt-2 border-t border-white/10 text-right"> <!-- Giảm spacing -->
-                Xin lỗi vì sự bất tiện. Cảm ơn bạn đã luôn tin tưởng MuaChungChi!
+            <p class="text-xs italic text-gray-400 mt-3 pt-2 border-t border-white/10 text-right"> Xin lỗi vì sự bất tiện. Cảm ơn bạn đã luôn tin tưởng MuaChungChi!
             </p>
         </section>
 
-        <!-- Hero Section -->
-        <section class="text-center py-2"> <!-- Giảm padding -->
-            <h1 class="text-3xl sm:text-4xl font-black mb-3 bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent"> <!-- Giảm size font -->
-                Chứng Chỉ Bị Thu Hồi?
+        <section class="text-center py-2"> <h1 class="text-3xl sm:text-4xl font-black mb-3 bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent"> Chứng Chỉ Bị Thu Hồi?
             </h1>
-            <p class="text-base sm:text-lg font-bold text-gray-300 mb-5 max-w-lg mx-auto"> <!-- Giảm size font và margin -->
-                Chúng tôi lo hết – Bạn chỉ cần chờ và sử dụng chứng chỉ tạm thời!
+            <p class="text-base sm:text-lg font-bold text-gray-300 mb-5 max-w-lg mx-auto"> Chúng tôi lo hết – Bạn chỉ cần chờ và sử dụng chứng chỉ tạm thời!
             </p>
-            <div class="grid grid-cols-3 gap-2"> <!-- Giảm gap -->
-                <!-- Card 1 -->
-                <div class="p-3 bg-white/5 glass rounded-lg border border-white/10 hover:border-emerald-400 transition-all"> <!-- Giảm padding và bo góc -->
-                    <i class="fa-solid fa-infinity text-2xl text-emerald-400 mb-1"></i> <!-- Giảm size icon -->
-                    <p class="text-sm font-black">Bảo hành trọn đời</p> <!-- Giảm size font -->
-                </div>
-                <!-- Card 2 -->
+            <div class="grid grid-cols-3 gap-2"> <div class="p-3 bg-white/5 glass rounded-lg border border-white/10 hover:border-emerald-400 transition-all"> <i class="fa-solid fa-infinity text-2xl text-emerald-400 mb-1"></i> <p class="text-sm font-black">Bảo hành trọn đời</p> </div>
                 <div class="p-3 bg-white/5 glass rounded-lg border border-white/10 hover:border-yellow-400 transition-all">
                     <i class="fa-solid fa-gift text-2xl text-yellow-400 mb-1"></i>
                     <p class="text-sm font-black">Cấp lại 100% miễn phí</p>
                 </div>
-                <!-- Card 3 -->
                 <div class="p-3 bg-white/5 glass rounded-lg border border-white/10 hover:border-cyan-400 transition-all">
                     <i class="fa-solid fa-clock text-2xl text-cyan-400 mb-1"></i>
                     <p class="text-sm font-black">14–33 ngày có mới</p>
@@ -126,62 +120,38 @@
             </div>
         </section>
 
-        <!-- Chứng chỉ tạm thời (Optimized Section) -->
         <section class="relative" id="temporary-certs">
-            <!-- Apply Gradient Border Wrapper -->
             <div class="gradient-border-wrap bg-white/5 glass rounded-2xl p-4 border-2 border-white/10 shadow-xl shadow-emerald-500/10">
                 
-                <!-- Header & Badge -->
-                <div class="flex justify-between items-start mb-3"> <!-- Giảm margin -->
-                    <div>
-                        <h2 class="text-xl font-black mb-0.5 bg-gradient-to-r from-emerald-300 to-cyan-400 bg-clip-text text-transparent">Chứng Chỉ Tạm Thời</h2> <!-- Giảm size font -->
-                        <p class="text-gray-400 text-xs">Dùng ngay ESign và Cert miễn phí trong lúc chờ cấp lại.</p> <!-- Giảm size font -->
-                    </div>
-                    <div class="bg-emerald-500 text-black px-2 py-0.5 rounded-full font-extrabold text-[10px] shadow-lg flex-shrink-0 mt-0.5"> <!-- Giảm size badge -->
-                        HỖ TRỢ NHANH
+                <div class="flex justify-between items-start mb-3"> <div>
+                        <h2 class="text-xl font-black mb-0.5 bg-gradient-to-r from-emerald-300 to-cyan-400 bg-clip-text text-transparent">Chứng Chỉ Tạm Thời</h2> <p class="text-gray-400 text-xs">Dùng ngay ESign và Cert miễn phí trong lúc chờ cấp lại.</p> </div>
+                    <div class="bg-emerald-500 text-black px-2 py-0.5 rounded-full font-extrabold text-[10px] shadow-lg flex-shrink-0 mt-0.5"> HỖ TRỢ NHANH
                     </div>
                 </div>
 
-                <!-- Stacked Content -->
-                <div class="flex flex-col items-center mb-4 space-y-1"> <!-- Đã sửa: space-y-3 -> space-y-1 -->
-                    <!-- Icon/Visual Area -->
-                    <div class="w-16 h-16 rounded-xl bg-white/10 p-2 shadow-lg shadow-purple-500/50 float border border-white/20 flex items-center justify-center"> <!-- Giảm size logo -->
-                        <img src="https://i.imgur.com/KD0Hq27.png" alt="ESign" class="w-full h-full object-contain rounded-md">
+                <div class="flex flex-col items-center mb-4 space-y-1"> <div class="w-16 h-16 rounded-xl bg-white/10 p-2 shadow-lg shadow-purple-500/50 float border border-white/20 flex items-center justify-center"> <img src="https://i.imgur.com/KD0Hq27.png" alt="ESign" class="w-full h-full object-contain rounded-md">
                     </div>
                     
-                    <!-- Buttons Area -->
-                    <div class="w-full space-y-1 max-w-sm"> <!-- Đã sửa: space-y-2 -> space-y-1 -->
-                        <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/VieCertP12/baohanhloi-page/main/esign.plist"
-                            class="block text-center py-1.5 bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 rounded-lg font-black text-sm shadow-xl shadow-purple-500/50 transform hover:scale-[1.02] transition-all"> <!-- Đã sửa: py-2 -> py-1.5 -->
-                            <i class="fa-solid fa-cloud-arrow-down mr-1"></i> Cài ESign Tạm Thời
+                    <div class="w-full space-y-1 max-w-sm"> <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/VieCertP12/baohanhloi-page/main/esign.plist"
+                            class="block text-center py-1.5 bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 rounded-lg font-black text-sm shadow-xl shadow-purple-500/50 transform hover:scale-[1.02] transition-all"> <i class="fa-solid fa-cloud-arrow-down mr-1"></i> Cài ESign Tạm Thời
                         </a>
                         <a href="https://bom.so/ETkf7k" target="_blank"
-                            class="block text-center py-1.5 bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 rounded-lg font-black text-sm shadow-xl shadow-red-500/50 transform hover:scale-[1.02] transition-all"> <!-- Đã sửa: py-2 -> py-1.5 -->
-                            <i class="fa-solid fa-file-export mr-1"></i> Tải Chứng Chỉ (.p12)
+                            class="block text-center py-1.5 bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 rounded-lg font-black text-sm shadow-xl shadow-red-500/50 transform hover:scale-[1.02] transition-all"> <i class="fa-solid fa-file-export mr-1"></i> Tải Chứng Chỉ (.p12)
                         </a>
                     </div>
                 </div>
 
-                <!-- Accordion for Installation Guide -->
-                <div class="mt-3 pt-1 border-t border-white/10"> <!-- Giảm margin/padding -->
-                    <button id="toggle-details-btn" aria-expanded="false" 
-                        class="w-full text-left flex justify-between items-center py-1.5 text-xs font-bold hover:text-orange-400 transition-colors"> <!-- Giảm padding/size font -->
-                        <span class="text-orange-300">Hướng dẫn cài đặt chi tiết (4 bước)</span>
-                        <i id="toggle-icon" class="fa-solid fa-chevron-right text-[10px] text-gray-400 transition-transform duration-400"></i> <!-- Giảm size icon -->
-                    </button>
+                <div class="mt-3 pt-1 border-t border-white/10"> <button id="toggle-details-btn" aria-expanded="false" 
+                        class="w-full text-left flex justify-between items-center py-1.5 text-xs font-bold hover:text-orange-400 transition-colors"> <span class="text-orange-300">Hướng dẫn cài đặt chi tiết (4 bước)</span>
+                        <i id="toggle-icon" class="fa-solid fa-chevron-right text-[10px] text-gray-400 transition-transform duration-400"></i> </button>
 
-                    <!-- Background mới cho nội dung hướng dẫn -->
                     <div id="install-details" class="accordion-content bg-black/30 rounded-lg">
-                        <div class="space-y-1 p-2 pt-1"> <!-- Thêm padding bên trong content -->
-                            <!-- Bước 1 -->
-                            <div class="flex gap-2 items-start">
-                                <div class="w-4 h-4 rounded-full bg-orange-500 flex items-center justify-center text-[10px] font-extrabold flex-shrink-0 mt-0.5">1</div> <!-- Giảm size dot -->
-                                <div>
+                        <div class="space-y-1 p-2 pt-1"> <div class="flex gap-2 items-start">
+                                <div class="w-4 h-4 rounded-full bg-orange-500 flex items-center justify-center text-[10px] font-extrabold flex-shrink-0 mt-0.5">1</div> <div>
                                     <h5 class="font-bold text-white text-xs">Cài đặt ESign</h5>
                                     <p class="text-[10px] text-gray-400">Nhấn nút "Cài ESign Tạm Thời" và chọn "Cài đặt" (Install).</p>
                                 </div>
                             </div>
-                            <!-- Bước 2 -->
                             <div class="flex gap-2 items-start">
                                 <div class="w-4 h-4 rounded-full bg-orange-500 flex items-center justify-center text-[10px] font-extrabold flex-shrink-0 mt-0.5">2</div>
                                 <div>
@@ -189,7 +159,6 @@
                                     <p class="text-[10px] text-gray-400 leading-snug">Vào Cài đặt > Cài đặt chung > Quản lý VPN & Thiết bị > Chọn hồ sơ & bấm Tin cậy.</p>
                                 </div>
                             </div>
-                            <!-- Bước 3 -->
                             <div class="flex gap-2 items-start">
                                 <div class="w-4 h-4 rounded-full bg-orange-500 flex items-center justify-center text-[10px] font-extrabold flex-shrink-0 mt-0.5">3</div>
                                 <div>
@@ -197,7 +166,6 @@
                                     <p class="text-[10px] text-gray-400">Tải file Chứng chỉ .P12, mở ESign và dùng chức năng "Import".</p>
                                 </div>
                             </div>
-                            <!-- Bước 4 -->
                             <div class="flex gap-2 items-start">
                                 <div class="w-4 h-4 rounded-full bg-emerald-500 flex items-center justify-center text-[10px] font-extrabold flex-shrink-0 mt-0.5"><i class="fa-solid fa-check"></i></div>
                                 <div>
@@ -211,30 +179,19 @@
             </div>
         </section>
 
-        <!-- QUY TRÌNH BẢO HÀNH -->
         <section class="relative">
-            <h2 class="text-2xl font-black text-center mb-8 bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent"> <!-- Giảm size font và margin -->
-                Quy Trình Bảo Hành Tự Động
+            <h2 class="text-2xl font-black text-center mb-8 bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent"> Quy Trình Bảo Hành Tự Động
             </h2>
 
-            <div class="space-y-8"> <!-- Giảm spacing giữa các bước -->
-                <!-- Bước 1 -->
-                <div class="flex flex-col items-center text-center max-w-md mx-auto">
-                    <div class="w-14 h-14 rounded-full bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center text-3xl font-black shadow-lg mb-3"> <!-- Giảm size dot -->
-                        1
+            <div class="space-y-8"> <div class="flex flex-col items-center text-center max-w-md mx-auto">
+                    <div class="w-14 h-14 rounded-full bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center text-3xl font-black shadow-lg mb-3"> 1
                     </div>
-                    <h3 class="text-lg font-black mb-2">Vào Lịch sử đơn hàng</h3> <!-- Giảm size font -->
-                    <div class="bg-white/10 glass rounded-xl p-2 shadow-md border border-white/20"> <!-- Giảm padding và bo góc -->
-                        <img src="https://i.imgur.com/yeVUPzt.png" alt="Bước 1" class="w-full rounded-md shadow-sm"> <!-- Giảm bo góc ảnh -->
-                    </div>
+                    <h3 class="text-lg font-black mb-2">Vào Lịch sử đơn hàng</h3> <div class="bg-white/10 glass rounded-xl p-2 shadow-md border border-white/20"> <img src="https://i.imgur.com/yeVUPzt.png" alt="Bước 1" class="w-full rounded-md shadow-sm"> </div>
                 </div>
 
-                <!-- Mũi tên xuống -->
                 <div class="flex justify-center">
-                    <i class="fa-solid fa-chevron-down text-2xl text-orange-500 animate-bounce"></i> <!-- Giảm size icon -->
-                </div>
+                    <i class="fa-solid fa-chevron-down text-2xl text-orange-500 animate-bounce"></i> </div>
 
-                <!-- Bước 2 -->
                 <div class="flex flex-col items-center text-center max-w-md mx-auto">
                     <div class="w-14 h-14 rounded-full bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center text-3xl font-black shadow-lg mb-3">
                         2
@@ -249,7 +206,6 @@
                     <i class="fa-solid fa-chevron-down text-2xl text-orange-500 animate-bounce"></i>
                 </div>
 
-                <!-- Bước 3 -->
                 <div class="flex flex-col items-center text-center max-w-md mx-auto">
                     <div class="w-14 h-14 rounded-full bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center text-3xl font-black shadow-lg mb-3">
                         3
@@ -264,41 +220,24 @@
                     <i class="fa-solid fa-chevron-down text-2xl text-emerald-500"></i>
                 </div>
 
-                <!-- Thành công -->
-                <div class="text-center py-5 bg-gradient-to-br from-emerald-600/30 to-teal-600/30 rounded-xl border-2 border-emerald-500 shadow-md"> <!-- Giảm padding, bo góc -->
-                    <i class="fa-solid fa-circle-check text-4xl text-emerald-400 mb-2"></i> <!-- Giảm size icon -->
-                    <h3 class="text-2xl font-black mb-1">HOÀN TẤT!</h3> <!-- Giảm size font -->
-                    <p class="text-base">Hệ thống đã tiếp nhận yêu cầu</p> <!-- Giảm size font -->
-                    <p class="text-lg font-bold text-emerald-400 mt-1.5">Chứng chỉ mới sẽ về trong 14–33 ngày</p> <!-- Giảm size font -->
-                    <div class="mt-3">
-                        <img src="https://i.imgur.com/yJjvSB8.png" alt="Thành công" class="mx-auto w-48 rounded-lg shadow-sm"> <!-- Giảm size ảnh -->
-                    </div>
+                <div class="text-center py-5 bg-gradient-to-br from-emerald-600/30 to-teal-600/30 rounded-xl border-2 border-emerald-500 shadow-md"> <i class="fa-solid fa-circle-check text-4xl text-emerald-400 mb-2"></i> <h3 class="text-2xl font-black mb-1">HOÀN TẤT!</h3> <p class="text-base">Hệ thống đã tiếp nhận yêu cầu</p> <p class="text-lg font-bold text-emerald-400 mt-1.5">Chứng chỉ mới sẽ về trong 14–33 ngày</p> <div class="mt-3">
+                        <img src="https://i.imgur.com/yJjvSB8.png" alt="Thành công" class="mx-auto w-48 rounded-lg shadow-sm"> </div>
                 </div>
             </div>
         </section>
 
-        <!-- FAQ -->
-        <section class="relative py-8" id="faq"> <!-- Giảm padding -->
-            <h2 class="text-2xl font-black text-center mb-6 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"> <!-- Giảm size font và margin -->
-                Câu Hỏi Thường Gặp
+        <section class="relative py-8" id="faq"> <h2 class="text-2xl font-black text-center mb-6 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"> Câu Hỏi Thường Gặp
             </h2>
-            <div class="space-y-1" id="faq-container"> <!-- Giảm spacing -->
-                <!-- FAQ Item 1 -->
-                <div class="bg-white/5 glass rounded-lg border border-white/10 overflow-hidden">
-                    <!-- Toggle button -->
-                    <button class="faq-toggle w-full flex justify-between items-center p-3 font-semibold text-xs hover:bg-white/10 transition-colors duration-200 text-left"> <!-- Giảm padding/size font -->
-                        <span>1. Thời gian bảo hành chứng chỉ là bao lâu?</span>
+            <div class="space-y-1" id="faq-container"> <div class="bg-white/5 glass rounded-lg border border-white/10 overflow-hidden">
+                    <button class="faq-toggle w-full flex justify-between items-center p-3 font-semibold text-xs hover:bg-white/10 transition-colors duration-200 text-left"> <span>1. Thời gian bảo hành chứng chỉ là bao lâu?</span>
                         <i class="fa-solid fa-chevron-right text-xs text-gray-400 transition-transform duration-300"></i>
                     </button>
-                    <!-- Content -->
                     <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-                        <p class="p-3 pt-0 text-xs text-gray-300 border-t border-white/10"> <!-- Giảm padding -->
-                            Chúng tôi cam kết bảo hành chứng chỉ trọn đời (Lifetime Warranty). Bạn sẽ được cấp lại chứng chỉ mới hoàn toàn miễn phí 100% mỗi khi chứng chỉ hiện tại bị Apple thu hồi.
+                        <p class="p-3 pt-0 text-xs text-gray-300 border-t border-white/10"> Chúng tôi cam kết bảo hành chứng chỉ trọn đời (Lifetime Warranty). Bạn sẽ được cấp lại chứng chỉ mới hoàn toàn miễn phí 100% mỗi khi chứng chỉ hiện tại bị Apple thu hồi.
                         </p>
                     </div>
                 </div>
                 
-                <!-- FAQ Item 2 -->
                 <div class="bg-white/5 glass rounded-lg border border-white/10 overflow-hidden">
                     <button class="faq-toggle w-full flex justify-between items-center p-3 font-semibold text-xs hover:bg-white/10 transition-colors duration-200 text-left">
                         <span>2. Tại sao phải chờ 14–33 ngày để có chứng chỉ mới?</span>
@@ -311,7 +250,6 @@
                     </div>
                 </div>
                 
-                <!-- FAQ Item 3 -->
                 <div class="bg-white/5 glass rounded-lg border border-white/10 overflow-hidden">
                     <button class="faq-toggle w-full flex justify-between items-center p-3 font-semibold text-xs hover:bg-white/10 transition-colors duration-200 text-left">
                         <span>3. Chứng chỉ tạm thời (miễn phí) dùng để làm gì?</span>
@@ -324,7 +262,6 @@
                     </div>
                 </div>
                 
-                <!-- FAQ Item 4 -->
                 <div class="bg-white/5 glass rounded-lg border border-white/10 overflow-hidden">
                     <button class="faq-toggle w-full flex justify-between items-center p-3 font-semibold text-xs hover:bg-white/10 transition-colors duration-200 text-left">
                         <span>4. Làm sao để tôi biết chứng chỉ mới đã được cấp?</span>
@@ -337,7 +274,6 @@
                     </div>
                 </div>
                 
-                <!-- FAQ Item 5 -->
                 <div class="bg-white/5 glass rounded-lg border border-white/10 overflow-hidden">
                     <button class="faq-toggle w-full flex justify-between items-center p-3 font-semibold text-xs hover:bg-white/10 transition-colors duration-200 text-left">
                         <span>5. Tôi có cần gỡ các ứng dụng cũ đã ký trước đó không?</span>
@@ -352,21 +288,15 @@
             </div>
         </section>
 
-        <!-- Hỗ trợ -->
-        <section class="text-center py-8" id="support"> <!-- Giảm padding -->
-            <h2 class="text-2xl font-black mb-5">Cần hỗ trợ ngay?</h2> <!-- Giảm size font và margin -->
-            <a href="http://zalo.me/0869775239" class="inline-flex items-center gap-3 px-5 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg font-black text-base shadow-xl hover:scale-110 transition-all"> <!-- Giảm padding/size nút -->
-                <i class="fa-brands fa-zalo text-xl"></i>
+        <section class="text-center py-8" id="support"> <h2 class="text-2xl font-black mb-5">Cần hỗ trợ ngay?</h2> <a href="http://zalo.me/0869775239" class="inline-flex items-center gap-3 px-5 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg font-black text-base shadow-xl hover:scale-110 transition-all"> <i class="fa-brands fa-zalo text-xl"></i>
                 Chat Zalo 24/7
             </a>
         </section>
     </main>
 
-    <footer class="text-center py-6 border-t border-white/10 text-gray-400 text-xs"> <!-- Giảm padding/size font -->
-        <p>&copy; 2025 MuaChungChi.com • Luôn đồng hành cùng bạn dù Apple thu hồi bao nhiêu lần</p>
+    <footer class="text-center py-6 border-t border-white/10 text-gray-400 text-xs"> <p>&copy; 2025 MuaChungChi.com • Luôn đồng hành cùng bạn dù Apple thu hồi bao nhiêu lần</p>
     </footer>
 
-    <!-- Script Xử lý Accordion -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const toggleBtn = document.getElementById('toggle-details-btn');
@@ -429,6 +359,62 @@
                 }
             `;
             document.head.appendChild(style);
+
+
+            // -------------------------------------------------------------------
+            // 🛡️ BẢO MẬT CHẶN CHUỘT PHẢI, F12, VÀ SAO CHÉP
+            // -------------------------------------------------------------------
+
+            // 1. Chặn chuột phải (context menu)
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+            });
+
+            // 2. Chặn các phím tắt mở Developer Tools (F12, Ctrl/Cmd+Shift+I, Ctrl/Cmd+Shift+J, Ctrl/Cmd+U)
+            document.addEventListener('keydown', function(e) {
+                // F12
+                if (e.key === 'F12') {
+                    e.preventDefault();
+                    return;
+                }
+                
+                // Ctrl+Shift+I (Windows/Linux) hoặc Cmd+Option+I (Mac)
+                // Ctrl+Shift+J (Windows/Linux) hoặc Cmd+Option+J (Mac)
+                // Ctrl+U (Windows/Linux) hoặc Cmd+U (Mac) - View Source
+                if (e.ctrlKey || e.metaKey) { // metaKey là Cmd trên Mac
+                    if (e.shiftKey) {
+                        if (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j') {
+                            e.preventDefault();
+                            return;
+                        }
+                    } else if (e.key === 'U' || e.key === 'u') {
+                        e.preventDefault();
+                        return;
+                    }
+                }
+
+                // Chặn phím 'C' khi Ctrl/Cmd được nhấn để ngăn chặn sao chép
+                if (e.ctrlKey || e.metaKey) {
+                    if (e.key === 'C' || e.key === 'c' || e.key === 'A' || e.key === 'a' || e.key === 'S' || e.key === 's') { // C=Copy, A=Select All, S=Save
+                         e.preventDefault();
+                         return;
+                    }
+                }
+            });
+
+            // 3. Chặn sao chép (copy) và cắt (cut)
+            document.addEventListener('copy', function(e) {
+                e.preventDefault();
+            });
+            document.addEventListener('cut', function(e) {
+                e.preventDefault();
+            });
+            
+            // 4. Chặn kéo thả (dùng để chọn và copy)
+            document.addEventListener('dragstart', function(e) {
+                e.preventDefault();
+            });
+
         });
     </script>
 </body>
